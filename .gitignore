@@ -1,3 +1,5 @@
 assets/model.step
 
 venv
+
+__pycache__/
