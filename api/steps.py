@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from util.step_to_mesh import step_to_mesh, download_zoho_file
 from util.render import render_mesh_twice
-from util.zoho_tools import add_img_to_item, add_back_img_to_item
+from util.zoho_tools import add_img_to_item, add_images_to_item
 from PIL import Image
 
 steps_bp = Blueprint("steps", __name__)
@@ -36,13 +36,15 @@ def step_to_img():
     img1_bytes = image_to_bytes(img1)
     img2_bytes = image_to_bytes(img2)
 
-    result1 = add_back_img_to_item(
-        data["item_id"], data["org_id"], data["inventory_token"],
-        img1_bytes, filename="front.png", content_type="image/png",
-    )
+
     result2 = add_img_to_item(
         data["item_id"], data["org_id"], data["inventory_token"],
         img2_bytes, filename="isometric.png", content_type="image/png",
+    )
+
+    result1 = add_images_to_item(
+        data["item_id"], data["org_id"], data["inventory_token"],
+        img1_bytes, filename="front.png", content_type="image/png",
     )
 
     return jsonify({

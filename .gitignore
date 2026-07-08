@@ -3,3 +3,5 @@ assets/model.step
 venv
 
 __pycache__/
+
+*.png
