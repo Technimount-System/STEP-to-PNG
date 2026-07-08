@@ -1,15 +1,18 @@
+import os
 from flask import Flask
-from api import register_blueprints
-from pyngrok import ngrok
 from dotenv import load_dotenv
+from api import register_blueprints
 
 load_dotenv()
 
 app = Flask(__name__)
 register_blueprints(app)
 
+@app.route("/")
+def home():
+    return {"status": "API is running"}
+
+
 if __name__ == "__main__":
-    port = 5000
-    public_url = ngrok.connect(port).public_url
-    print(f" * ngrok tunnel: {public_url} -> http://127.0.0.1:{port}")
-    app.run(port=port)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
