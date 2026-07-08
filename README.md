@@ -10,9 +10,9 @@ Trigger it with a single `POST` request, tunnel it through `ngrok`, and let Zoho
 
 ```
 ┌──────────────┐     ┌────────────────┐     ┌───────────────┐     ┌──────────────┐     ┌───────────────────┐
-│ POST /steps  │ ──▶ │ Download STEP  │ ──▶ │ CadQuery       │ ──▶ │ PyVista       │ ──▶ │ Zoho Inventory     │
-│ (item info,  │     │ from Zoho      │     │ STEP → STL     │     │ render + cam  │     │ upload 2 PNGs      │
-│  token, url) │     │ WorkDrive      │     │ conversion     │     │ + screenshot  │     │ to item images     │
+│ POST /steps  │ ──▶│ Download STEP   │ ──▶│ CadQuery      │──▶ │ PyVista       │──▶ │ Zoho Inventory    │
+│ (item info,  │     │ from Zoho      │     │ STEP → STL    │     │ render + cam  │    │ upload 2 PNGs      │
+│  token, url) │     │ WorkDrive      │     │ conversion    │     │ + screenshot  │    │ to item images     │
 └──────────────┘     └────────────────┘     └───────────────┘     └──────────────┘     └───────────────────┘
 ```
 
@@ -57,10 +57,7 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
-Then, in another terminal, run
-```bash
-ngrok http 5000
-```
+
 
 This launches Flask and opens an ngrok tunnel, printing your public URL to the console:
 
