@@ -1,6 +1,11 @@
+import os
+os.environ["VTK_DEFAULT_OPENGL_WINDOW"] = "vtkOSOpenGLRenderWindow"
+
 import cadquery as cq
 import pyvista as pv
-import tempfile, os
+import tempfile
+
+pv.OFF_SCREEN=True
 
 def step_to_mesh(step_data):
     with tempfile.NamedTemporaryFile(suffix=".step", delete=False) as tmp:
