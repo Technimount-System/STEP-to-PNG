@@ -4,6 +4,7 @@ RUN apt-get update && apt-get install -y \
     libgl1 \
     libglx-mesa0 \
     libosmesa6 \
+    libosmesa6-dev \
     libglu1-mesa \
     libxrender1 \
     libxext6 \
