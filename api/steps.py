@@ -1,3 +1,4 @@
+import os
 from flask import Blueprint, request, jsonify
 from util.step_to_mesh import step_to_mesh, download_zoho_file
 from util.render import render_mesh_twice
@@ -10,6 +11,10 @@ import io
 
 @steps_bp.route("", methods=["POST"])
 def step_to_img():
+    api_key = os.environ.get("STEPS_API_KEY")
+    if not api_key or request.headers.get("X-Api-Key") != api_key:
+        return jsonify({"error": "Unauthorized"}), 401
+
     data = request.get_json(force=True, silent=True)
 
     if not data:
